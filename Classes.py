@@ -27,4 +27,13 @@ class Hardware:
         self.usage = f"{cpu_percent(percpu=True, interval=1)[0]} %"
         return self.usage
         
-        
+    def main_partition_info(self):
+        self.partitions = disk_partitions()
+        self.c_drive = self.partitions[0].mountpoint
+        self.partition_usage = disk_usage(self.c_drive)
+        self.total = self.partition_usage.total
+        self.used = self.partition_usage.used
+        self.free = self.partition_usage.free
+        return f"{self.total:,}" , f"{self.used:,}" , f"{self.free:,}"
+    
+
