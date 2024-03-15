@@ -16,18 +16,18 @@ class Resolution:
 class Hardware:
     def physical_cores(self) -> int:
         return cpu_count(logical=False)
-    def total_cores(self):
+    def total_cores(self) -> int:
         return cpu_count(logical=True)
-    def cpu_frequency(self):
+    def cpu_frequency(self) -> float:
         self.cpu_freq = cpu_freq()
         self.freq_min = self.cpu_freq.min
         self.freq_max = self.cpu_freq.max
         return self.freq_min , self.freq_max
-    def cpu_usage(self):
+    def cpu_usage(self) -> str:
         self.usage = f"{cpu_percent(percpu=True, interval=1)[0]} %"
         return self.usage
         
-    def main_partition_info(self):
+    def main_partition_info(self) -> str:
         self.partitions = disk_partitions()
         self.c_drive = self.partitions[0].mountpoint
         self.partition_usage = disk_usage(self.c_drive)
