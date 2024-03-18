@@ -79,7 +79,3 @@ class hardware_process:
             data4 = data.writerows([data3])
 
 
-if __name__ == "__main__":
-    a = hardware_process()
-    a.check()
-    a.view()
